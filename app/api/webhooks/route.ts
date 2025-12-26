@@ -7,7 +7,7 @@ import { api } from '@/convex/_generated/api'
 export async function POST(req: NextRequest) {
   try {
     const evt = await verifyWebhook(req)
-    const convex = new ConvexHttpClient(process.env.CONVEX_URL!)
+    const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
     console.log(evt.data)
     if (evt.type === 'user.created' || evt.type === 'user.updated') {
       const data = evt.data

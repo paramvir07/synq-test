@@ -2,7 +2,7 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-  Users: defineTable({
+  users: defineTable({
     clerkId: v.string(),
     fullname: v.string(),
     pfp: v.optional(v.string()),

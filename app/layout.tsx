@@ -4,7 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadcn } from "@clerk/themes";
 import { ThemeProvider } from "@/components/shared/theme-provider";
-import { ConvexClientProvider } from "@/lib/ConvexClientProvider";
+import ConvexClientProvider from "@/lib/ConvexClientProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

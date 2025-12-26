@@ -10,7 +10,7 @@ export const createUser = mutation({
         email: v.string(),
     },
     handler: async (ctx, args) => {
-        await ctx.db.insert("Users", {
+        await ctx.db.insert("users", {
             clerkId: args.clerkId,
             fullname: args.fullname,
             pfp: args.pfp,

@@ -1,17 +1,11 @@
-'use client'
-import { Authenticated, Unauthenticated } from "convex/react";
-import { SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs"
 
 const page = () => {
   return (
     <div>
- <Authenticated>
-        <UserButton />
-        <div>Hello</div>
-      </Authenticated>
-      <Unauthenticated>
-        <SignInButton />
-      </Unauthenticated>
+      <SignedIn>
+        <UserButton/>
+      </SignedIn>
 
     </div>
   )

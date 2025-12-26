@@ -13,15 +13,13 @@ export async function POST(req: NextRequest) {
     if (evt.type === 'user.created' || evt.type === 'user.updated') {
       const data = evt.data
 
-      await convex.mutation(api.users.createUser, {
+      await convex.action(api.users.UpsertUserClerkWebhook, {
         clerkId: data.id,
         fullname: `${data.first_name || ''} ${data.last_name || ''}`.trim(),
-        pfp: data.image_url || '',
+        pfp: data.image_url || undefined,
         username: data.username || '',
         email: data.email_addresses?.[0]?.email_address || '',
       })
-
-      console.log('User created with email : '+ data.email_addresses?.[0]?.email_address)
     }
 
     if (evt.type === 'user.deleted') {
@@ -29,17 +27,6 @@ export async function POST(req: NextRequest) {
         clerkId: evt.data.id || '',
        })
         console.log('User deleted with clerkId : '+ evt.data.id)
-    }
-
-    if(evt.type === 'user.updated'){
-       await convex.mutation(api.users.updateUser,{
-        clerkId: evt.data.id,
-        fullname: `${evt.data.first_name || ''} ${evt.data.last_name || ''}`.trim(),
-        pfp: evt.data.image_url || '',
-        username: evt.data.username || '',
-        email: evt.data.email_addresses?.[0]?.email_address || '',
-       })
-        console.log('User updated with email : '+ evt.data.email_addresses?.[0]?.email_address)
     }
 
     return new Response('Webhook received', { status: 200 })

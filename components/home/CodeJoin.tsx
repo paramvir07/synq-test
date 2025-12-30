@@ -10,41 +10,56 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
 import { Form } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Turntable } from "lucide-react";
+import { CirclePlus } from "lucide-react";
+import {
+  Tooltip,
+  TooltipPopup,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+
+
 
 export default function CodeJoin() {
   return (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline" />}>
-        <Turntable />
+      <DialogTrigger>
+        <Tooltip>
+        <TooltipTrigger render={<Button variant="outline" />}>
+            <CirclePlus/>
+        </TooltipTrigger>
+        <TooltipPopup>Join</TooltipPopup>
+        </Tooltip>
       </DialogTrigger>
       <DialogPopup className="sm:max-w-sm">
         <Form className="contents">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
+            <DialogTitle>Join a Room</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re
-              done.
+              Enter a room code to join or create a new room.
             </DialogDescription>
           </DialogHeader>
-          <DialogPanel className="grid gap-4">
-            <Field>
-              <FieldLabel>Name</FieldLabel>
-              <Input defaultValue="Margaret Welsh" type="text" />
-            </Field>
-            <Field>
-              <FieldLabel>Username</FieldLabel>
-              <Input defaultValue="@maggie.welsh" type="text" />
-            </Field>
+          <DialogPanel className="grid gap-4 items-center justify-center">
+            <InputOTP maxLength={6}>
+                <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                </InputOTPGroup>
+                </InputOTP>
           </DialogPanel>
+                
           <DialogFooter>
-            <DialogClose render={<Button variant="ghost" />}>
-              Cancel
-            </DialogClose>
-            <Button type="submit">Save</Button>
+            <Button variant={'outline'} className=""><CirclePlus /> Create a Room</Button>
+            <Button type='button'>Join</Button>
           </DialogFooter>
         </Form>
       </DialogPopup>

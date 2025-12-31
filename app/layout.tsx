@@ -27,31 +27,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider 
+    <ClerkProvider
       appearance={{
-      layout: {
-      unsafe_disableDevelopmentModeWarnings: true
-      },
-      baseTheme: shadcn,
+        layout: {
+          unsafe_disableDevelopmentModeWarnings: true,
+        },
+        baseTheme: shadcn,
       }}
     >
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        >
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
             <ConvexClientProvider>
-              {children}
+              <div className="flex items-center justify-center max-w-3xl mx-auto">
+                
+                  {children}
+                </div>
+              
             </ConvexClientProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+          </ThemeProvider>
+        </body>
+      </html>
     </ClerkProvider>
-   
   );
 }

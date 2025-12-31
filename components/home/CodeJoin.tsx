@@ -21,6 +21,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp"
+import Link from "next/link";
 
 
 
@@ -29,10 +30,10 @@ export default function CodeJoin() {
     <Dialog>
       <DialogTrigger>
         <Tooltip>
-        <TooltipTrigger render={<Button variant="outline" />}>
-            <CirclePlus/>
-        </TooltipTrigger>
-        <TooltipPopup>Join</TooltipPopup>
+          <TooltipTrigger render={<Button variant="outline" />}>
+            <CirclePlus />
+          </TooltipTrigger>
+          <TooltipPopup>Join</TooltipPopup>
         </Tooltip>
       </DialogTrigger>
       <DialogPopup className="sm:max-w-sm">
@@ -45,20 +46,25 @@ export default function CodeJoin() {
           </DialogHeader>
           <DialogPanel className="grid gap-4 items-center justify-center">
             <InputOTP maxLength={6}>
-                <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                </InputOTPGroup>
-                </InputOTP>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
           </DialogPanel>
-                
+
           <DialogFooter>
-            <Button variant={'outline'} className=""><CirclePlus /> Create a Room</Button>
-            <Button type='button'>Join</Button>
+            <Link href="/room/abcd">
+              <Button variant={"outline"}>
+                <CirclePlus /> Create a Room
+              </Button>
+            </Link>
+
+            <Button type="button">Join</Button>
           </DialogFooter>
         </Form>
       </DialogPopup>

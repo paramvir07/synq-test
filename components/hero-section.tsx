@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { HeroHeader } from './header'
-import Background from '@/public/background.jpg'
 
 const transitionVariants = {
     item: {
@@ -68,7 +67,7 @@ export default function HeroSection() {
                             }}
                             className="mask-b-from-35% mask-b-to-90% absolute inset-0 top-56 -z-20 lg:top-32">
                             <Image
-                                src={Background}
+                                src={'https://ik.imagekit.io/zaia2gfsw/vivo-x-fold-green-5120x4542-23596.jpg'}
                                 alt="background"
                                 className="hidden size-full dark:block"
                                 width="3276"

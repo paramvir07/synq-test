@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import Logo from '@/public/logo.png'
 import { Button } from '@/components/ui/button'
 import React from 'react'
 import { cn } from '@/lib/utils'
@@ -30,7 +29,7 @@ export const HeroHeader = () => {
                             href="/"
                             aria-label="home"
                             className="flex items-center space-x-2">
-                            <Image src={Logo} height={35} width={35} alt='Logo' className='rounded-xl'/>
+                            <Image src={'https://ik.imagekit.io/zaia2gfsw/logo.png'} height={35} width={35} alt='Logo' className='rounded-xl'/>
                             {/* <p className='flex font-sans text-2xl'>Synq</p> */}
                         </Link>
                         

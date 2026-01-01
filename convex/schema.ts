@@ -19,12 +19,14 @@ export default defineSchema({
   }).index("byTitle", ['title']).index("byArtist", ['artist']).index("byUploadedBy",['uploadedBy']),
 
   room: defineTable({
-    roomId: v.number(),
+    roomCode: v.number(),
     hostId: v.string(),
     createdAt: v.number(),
-    songsQueue: v.array(v.string()),
+    songsQueue: v.optional(v.array(v.string())),
     currentSong: v.optional(v.string()),
+    currentSongState: v.boolean(), //default set to false
+    currentLoopState: v.string(), //album or song or none
     currentSongProgress: v.number(),
     joinedUsers: v.array(v.string())
-  }).index("byRoomId", ["roomId"]).index("byHostId", ["hostId"]),
+  }).index("byRoomCode", ["roomCode"]).index("byHostId", ["hostId"]),
 });

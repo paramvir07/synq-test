@@ -21,11 +21,13 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp"
-import Link from "next/link";
+import CreateRoomButton from "./CreateRoomButton";
+import { auth } from "@clerk/nextjs/server";
 
 
 
-export default function CodeJoin() {
+export default async function CodeJoin() {
+  const { userId } = await auth();
   return (
     <Dialog>
       <DialogTrigger>
@@ -58,11 +60,7 @@ export default function CodeJoin() {
           </DialogPanel>
 
           <DialogFooter>
-            <Link href="/room/abcd">
-              <Button variant={"outline"}>
-                <CirclePlus /> Create a Room
-              </Button>
-            </Link>
+            <CreateRoomButton clerkId={ userId } />
 
             <Button type="button">Join</Button>
           </DialogFooter>

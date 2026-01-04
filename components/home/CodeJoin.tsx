@@ -21,13 +21,11 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp"
-import CreateRoomButton from "./CreateRoomButton";
-import { auth } from "@clerk/nextjs/server";
+import { createRoomAction, joinRoomAction } from "@/app/actions/rooms.actions";
 
 
 
 export default async function CodeJoin() {
-  const { userId } = await auth();
   return (
     <Dialog>
       <DialogTrigger>
@@ -39,7 +37,7 @@ export default async function CodeJoin() {
         </Tooltip>
       </DialogTrigger>
       <DialogPopup className="sm:max-w-sm">
-        <Form className="contents">
+        <Form className="contents" onSubmit={joinRoomAction}>
           <DialogHeader>
             <DialogTitle>Join a Room</DialogTitle>
             <DialogDescription>
@@ -47,7 +45,7 @@ export default async function CodeJoin() {
             </DialogDescription>
           </DialogHeader>
           <DialogPanel className="grid gap-4 items-center justify-center">
-            <InputOTP maxLength={6}>
+            <InputOTP maxLength={6} required>
               <InputOTPGroup>
                 <InputOTPSlot index={0} />
                 <InputOTPSlot index={1} />
@@ -60,9 +58,10 @@ export default async function CodeJoin() {
           </DialogPanel>
 
           <DialogFooter>
-            <CreateRoomButton clerkId={ userId } />
-
-            <Button type="button">Join</Button>
+            <Button variant={"outline"} onClick={createRoomAction}>
+            <CirclePlus /> Create a Room
+            </Button>
+            <Button type="submit">Join</Button>
           </DialogFooter>
         </Form>
       </DialogPopup>

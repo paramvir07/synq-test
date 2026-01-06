@@ -38,6 +38,7 @@ export const HeroHeader = () => {
                   height={35}
                   width={35}
                   alt="Logo"
+                  loading='eager'
                   className="rounded-xl"
                 />
                 {/* <p className='flex font-sans text-2xl'>Synq</p> */}

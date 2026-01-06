@@ -2,7 +2,8 @@ import { v } from "convex/values";
 import { mutation, query, MutationCtx } from "./_generated/server";
 
 const generateRandomRoomCode = async (ctx: MutationCtx) => {
-  for (let i = 0; i < 10; i++) { // try 10 times max
+  for (let i = 0; i < 10; i++) {
+    // try 10 times max
     const randomRoomCode = Math.floor(100000 + Math.random() * 900000);
     const existingRoom = await ctx.db
       .query("room")
@@ -13,11 +14,10 @@ const generateRandomRoomCode = async (ctx: MutationCtx) => {
   throw new Error("Could not generate unique 6-digit room code after 10 tries");
 };
 
-
 export const getRooms = query({
   args: {},
   handler: async (ctx) => {
-    return await ctx.db.query("users").collect();
+    return await ctx.db.query("room").collect();
   },
 });
 
@@ -25,19 +25,21 @@ export const createRoom = mutation({
   args: {
     clerkId: v.string(),
   },
-    handler: async (ctx, args) => {
+  handler: async (ctx, args) => {
     const user = await ctx.db
       .query("users")
       .withIndex("byClerkId", (q) => q.eq("clerkId", args.clerkId))
       .unique();
 
     if (!user) {
-      console.log("User not found for creating room with clerkId: " + args.clerkId);
+      console.log(
+        "User not found for creating room with clerkId: " + args.clerkId
+      );
       return;
     }
 
     const roomcode = await generateRandomRoomCode(ctx);
-    
+
     await ctx.db.insert("room", {
       roomCode: roomcode,
       hostId: user._id,
@@ -75,8 +77,10 @@ export const joinRoom = mutation({
     if (!room)
       return console.log(`room not found with room code: ${args.roomCode}`);
 
+    const updatedJoinedUsers = Array.from(new Set([...room.joinedUsers, user._id]));
+    
     await ctx.db.patch(room._id, {
-      joinedUsers: [user._id],
+      joinedUsers: updatedJoinedUsers,
     });
   },
 });
@@ -92,7 +96,9 @@ export const leaveRoom = mutation({
       .withIndex("byClerkId", (q) => q.eq("clerkId", args.clerkId))
       .unique();
     if (!user) {
-      console.log("User not found while leaving room with clerkId: " + args.clerkId);
+      console.log(
+        "User not found while leaving room with clerkId: " + args.clerkId
+      );
       return;
     }
 

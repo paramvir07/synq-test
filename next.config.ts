@@ -2,13 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  images:{
-    remotePatterns:[
+  images: {
+    remotePatterns: [
       {
-        hostname:'ik.imagekit.io'
-      }
-    ]
-  }
+        hostname: "ik.imagekit.io",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.dealeraccelerate.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

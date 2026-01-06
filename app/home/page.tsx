@@ -4,7 +4,7 @@ import { AuroraText } from "@/components/ui/aurora-text";
 import { Card } from "@/components/ui/card";
 import { UserButton } from "@clerk/nextjs";
 
-const page = () => {
+const page = async() => {
   return (
     <div className="flex flex-col items-center justify-center max-w-7xl mx-auto">
       <div className="p-7 flex flex-col gap-8 w-full max-w-3xl ">

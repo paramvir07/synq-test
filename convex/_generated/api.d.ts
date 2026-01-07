@@ -9,7 +9,6 @@
  */
 
 import type * as room from "../room.js";
-import type * as users from "../users.js";
 
 import type {
   ApiFromModules,
@@ -19,7 +18,6 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   room: typeof room;
-  users: typeof users;
 }>;
 
 /**

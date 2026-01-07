@@ -21,7 +21,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp"
-import { createRoomAction, joinRoomAction} from "@/app/actions/rooms.actions";
 
 export default async function CodeJoin() {
   return (
@@ -35,7 +34,7 @@ export default async function CodeJoin() {
         </Tooltip>
       </DialogTrigger>
       <DialogPopup className="sm:max-w-sm">
-        <Form className="contents" id="room-code-form" action={joinRoomAction}>
+        <Form className="contents" id="room-code-form">
           <DialogHeader>
             <DialogTitle>Join a Room</DialogTitle>
             <DialogDescription>
@@ -56,7 +55,7 @@ export default async function CodeJoin() {
           </DialogPanel>
 
           <DialogFooter>
-            <Button variant={"outline"} onClick={createRoomAction}>
+            <Button variant={"outline"}>
             <CirclePlus /> Create a Room
             </Button>
             <Button type="submit">Join</Button>
